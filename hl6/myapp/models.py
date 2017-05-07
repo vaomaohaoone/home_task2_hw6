@@ -21,7 +21,7 @@ class Task(models.Model):
     road_map = models.ForeignKey(RoadMap, related_name='tasks')
 
     class Meta:
-        ordering = ['title', 'state', 'estimate']
+        ordering = ['state', 'estimate']
 
 
 
