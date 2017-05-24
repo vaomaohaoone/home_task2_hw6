@@ -15,12 +15,10 @@ def show_tasks(request):
 @csrf_exempt
 def add_task(request):
     if request.method == 'POST':
-        instance = get_object_or_404(RoadMap, rd_id=request.POST.get('road_map'))
-        a = Task(title=request.POST.get('title'),
-                 estimate=request.POST.get('estimate'),
-                 road_map=instance)
-        a.save()
-        return HttpResponseRedirect('/tasks/')
+        form = CreateForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/tasks/')
     form = CreateForm()
     return render_to_response('form1.html', {'form': form})
 

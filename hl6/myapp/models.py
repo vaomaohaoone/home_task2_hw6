@@ -2,8 +2,6 @@ from django.db import models
 import datetime
 from django import utils
 
-STATE_CHOICES = (('in_progress', 'in_progress'), ('ready', 'ready'),)
-
 
 class RoadMap(models.Model):
     rd_id = models.AutoField(primary_key=True)
@@ -14,6 +12,7 @@ class RoadMap(models.Model):
 
 
 class Task(models.Model):
+    STATE_CHOICES = (('in_progress', 'in_progress'), ('ready', 'ready'),)
     title = models.CharField(max_length=100)
     state = models.CharField(max_length=11, choices=STATE_CHOICES, default='in_progress')
     estimate = models.DateField(default=utils.timezone.now)
